@@ -12,4 +12,4 @@ case class Bar(score: Option[Int], status: String ) {
 }
 
 val bar = Bar(Some(1), "start")
-println(JsonMapper.JsonMapper.toJson(bar))
+println(JsonMapper.toJson(bar))

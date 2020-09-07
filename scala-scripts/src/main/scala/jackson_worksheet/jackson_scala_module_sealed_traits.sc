@@ -39,4 +39,4 @@ class StatusDeserializer extends JsonDeserializer[Status] {
 case class Foo(score: Option[Int], status: Status)
 val foo = Foo(Some(1), Start)
 
-println(JsonMapper.JsonMapper.toJson(foo))
+println(JsonMapper.toJson(foo))

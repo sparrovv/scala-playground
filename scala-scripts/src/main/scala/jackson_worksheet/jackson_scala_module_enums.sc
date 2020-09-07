@@ -3,7 +3,6 @@ import com.fasterxml.jackson.core.`type`.TypeReference
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.module.scala.JsonScalaEnumeration
 
-
 // this TypeReference class is needed for Jackson JSON serialization
 class EnumsStatusType extends TypeReference[EnumStatus.type]
 object EnumStatus extends Enumeration {
@@ -19,4 +18,4 @@ case class Bar(
 )
 
 val bar = Bar(Some(1), EnumStatus.Start)
-println(JsonMapper.JsonMapper.toJson(bar))
+println(JsonMapper.toJson(bar))
