@@ -11,3 +11,7 @@ Bunch of worksheets that I run with [ammonite](https://ammonite.io/) to test out
 ```
 amm scala-scripts/src/main/scala/jackson_worksheet/jackson_scala_module_annotations.sc 
 ```
+
+### How to set it up in Intellij?
+
+https://www.jetbrains.com/help/idea/work-with-scala-worksheet-and-ammonite.html
