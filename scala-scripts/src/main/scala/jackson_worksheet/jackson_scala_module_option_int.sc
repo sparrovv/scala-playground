@@ -4,37 +4,39 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 /*
  * Just a demo of this behaviour: https://github.com/FasterXML/jackson-module-scala/wiki/FAQ
  */
-case class Bar(
-    score: Option[Int],
-    status: String
+case class IntInOption(
+    score: Option[Int]
 )
 
-case class FixedBar(
-    @JsonDeserialize(contentAs = classOf[java.lang.Integer]) score: Option[Int],
-    status: String
+case class FixedIntInOption(
+    @JsonDeserialize(contentAs = classOf[java.lang.Integer]) score: Option[Int]
+)
+
+case class NoOption(
+    score: Int
 )
 
 val jsonWithIntAsInt =
     """
-      |{"score": 1, "status": "start"}
+      |{"score": 1}
       |""".stripMargin.stripLineEnd
 
 val jsonWithIntAsStr =
     """
-    |{"score": "1", "status": "start"}
+    |{"score": "1"}
     |""".stripMargin.stripLineEnd
 
-val bar = Bar(Some(1), "start")
+val intInOption = IntInOption(Some(1))
 
 println(s"Deserializing: ${jsonWithIntAsStr}")
-val deBar = JsonMapper.fromJson[Bar](jsonWithIntAsStr)
-println(s"checking equality: ${deBar == bar}")
+val intInOptionDes = JsonMapper.fromJson[IntInOption](jsonWithIntAsStr)
+println(s"checking equality for Option: ${intInOptionDes == intInOption}")
 
 println(s"Deserializing: ${jsonWithIntAsInt}")
-val deBar1 = JsonMapper.fromJson[Bar](jsonWithIntAsInt)
-println(s"checking equality: ${deBar1 == bar}")
+val intInOptionDes1 = JsonMapper.fromJson[IntInOption](jsonWithIntAsInt)
+println(s"checking equality: ${intInOptionDes1 == intInOption}")
 
-println("A version with the right annotation:")
-val fixedBar = FixedBar(Some(1), "start")
-val deFixedBar = JsonMapper.fromJson[FixedBar](jsonWithIntAsStr)
-println(s"checking equality ${deFixedBar == fixedBar}")
+println("A fixed version with an annotation:")
+val fixedIntInOption = FixedIntInOption(Some(1))
+val fixedIntInOptionDes = JsonMapper.fromJson[FixedIntInOption](jsonWithIntAsStr)
+println(s"checking equality ${fixedIntInOptionDes == fixedIntInOption}")

@@ -12,8 +12,5 @@ mapper.registerModule(DefaultScalaModule)
 mapper.disable(FAIL_ON_UNKNOWN_PROPERTIES)
 mapper.setSerializationInclusion(Include.NON_NULL)
 
-def toJson[T](value: T): String =
-  mapper.writeValueAsString(value)
-
-def fromJson[T](json: String)(implicit m: Manifest[T]): T =
-  mapper.readValue[T](json)
+def toJson[T](value: T): String = mapper.writeValueAsString(value)
+def fromJson[T](json: String)(implicit m: Manifest[T]): T = mapper.readValue[T](json)
